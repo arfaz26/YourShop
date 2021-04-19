@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const color = require("colors");
 const products = require("./data/products");
 const connect = require("./config/db");
 
@@ -26,5 +27,7 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(
   PORT,
-  console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+  console.log(
+    `server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+  )
 );
