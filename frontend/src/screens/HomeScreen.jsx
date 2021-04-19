@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import Product from "../components/Product";
-import { listProducts } from "../store/actions/productAction";
+import { listProducts } from "../store/actions/ListproductAction";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
-  const productList = useSelector((state) => state.product);
+  const productList = useSelector((state) => state.productList);
   const { products, loading, error } = productList;
 
   useEffect(() => {
