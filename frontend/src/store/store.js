@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import { productListReducer } from "./reducers/productReducer";
-import { productDetailReducer } from "./reducers/productDetail";
+import { productListReducer } from "./reducers/product/productReducer";
+import { productDetailReducer } from "./reducers/product/productDetail";
 
 const composeEnhancers =
   process.env.NODE_ENV === "development"
