@@ -7,7 +7,9 @@
     "server": "node backend/server",
     "start": "nodemon backend/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently --raw \"npm start\" \"npm run client\" "
+    "dev": "concurrently --raw \"npm start\" \"npm run client\" ",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,7 @@
   },
   "homepage": "https://github.com/arfaz26/YourShop#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "colors": "^1.4.0",
     "concurrently": "^6.0.2",
     "dotenv": "^8.2.0",
