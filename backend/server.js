@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const color = require("colors");
 const connect = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRoutes);
+
+app.use(notFound);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
