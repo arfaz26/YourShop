@@ -92,7 +92,6 @@ const ProductScreen = ({ history, match }) => {
                             setQuantity(e.target.value);
                           }}
                         >
-                          {console.log("quantity", quantity)}
                           {[...Array(product.countInStock).keys()].map((x) => (
                             <option key={x + 1} value={x + 1}>
                               {x + 1}
