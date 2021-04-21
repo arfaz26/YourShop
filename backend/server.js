@@ -3,9 +3,11 @@ const dotenv = require("dotenv");
 const color = require("colors");
 const connect = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
+const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 const app = express();
+app.use(express.json());
 dotenv.config();
 
 connect();
@@ -15,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/products", productRoutes);
+app.use("/api/users", userRoutes);
 
 app.use(notFound);
 
