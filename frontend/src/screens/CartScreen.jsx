@@ -37,7 +37,7 @@ const CartScreen = ({ match, location, history }) => {
   return (
     <div>
       <Row>
-        <Col md={8}>
+        <Col md={8} xs={12}>
           <h1>Shopping Cart</h1>
           {cartItems.length === 0 ? (
             <Message>
@@ -49,15 +49,18 @@ const CartScreen = ({ match, location, history }) => {
               {cartItems.map((item) => (
                 <ListGroup.Item key={item.product}>
                   <Row>
-                    <Col md={2}>
+                    <Col md={2} xs={3}>
                       <Image src={item.image} alt={item.name} fluid rounded />
                     </Col>
-                    <Col md={3}>
+                    <Col md={3} xs={2}>
                       <Link to={`/product/${item.product}`}>{item.name}</Link>
                     </Col>
-                    <Col md={2}>${item.price}</Col>
-                    <Col md={2}>
+                    <Col md={2} xs={2}>
+                      ${item.price}
+                    </Col>
+                    <Col md={2} xs={3}>
                       <Form.Control
+                        size="sm"
                         as="select"
                         value={item.quantity}
                         onChange={(e) => {
@@ -73,7 +76,7 @@ const CartScreen = ({ match, location, history }) => {
                         ))}
                       </Form.Control>
                     </Col>
-                    <Col md={2}>
+                    <Col md={2} xs={1}>
                       <Button
                         type="button"
                         variant="light"
