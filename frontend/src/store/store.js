@@ -9,6 +9,7 @@ import {
   userUpdateProfileReducer,
   userDetailsReducer,
 } from "./reducers/user/userReducer";
+import { orderCreateReducer } from "./reducers/order/orderReducer";
 // import { userDetailsReducer } from "../store/reducers/user/userDetail";
 
 const composeEnhancers =
@@ -24,14 +25,15 @@ const rootReducer = combineReducers({
   userRegister: userRegisterReducer,
   userDetail: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
+  orderCreate: orderCreateReducer,
 });
 
 const store = createStore(
   rootReducer,
-  // composeEnhancers(
-  //
-  applyMiddleware(thunk)
-  //
-  // )
+  composeEnhancers(
+    //
+    applyMiddleware(thunk)
+    //
+  )
 );
 export default store;
