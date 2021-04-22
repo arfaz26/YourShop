@@ -7,12 +7,6 @@ const cartItemsFromStorage = localStorage.getItem("cartItems")
 const shippingAddressFromStorage = localStorage.getItem("shippingAddress")
   ? JSON.parse(localStorage.getItem("shippingAddress"))
   : {};
-// {
-//     address: " ",
-//     postalCode: " ",
-//     country: " ",
-//     city: " ",
-//   };
 
 const initialState = {
   cartItems: cartItemsFromStorage,
@@ -48,6 +42,11 @@ export const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         shippingAddress: action.payload,
+      };
+    case actionTypes.CART_SAVE_PAYMENT_METHOD:
+      return {
+        ...state,
+        paymentMethod: action.payload,
       };
     default:
       return state;
