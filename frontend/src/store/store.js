@@ -6,7 +6,11 @@ import { cartReducer } from "./reducers/cart/cartReducer";
 import {
   userLoginReducer,
   userRegisterReducer,
+  userUpdateProfileReducer,
+  userDetailsReducer,
 } from "./reducers/user/userReducer";
+// import { userDetailsReducer } from "../store/reducers/user/userDetail";
+
 const composeEnhancers =
   process.env.NODE_ENV === "development"
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -18,14 +22,16 @@ const rootReducer = combineReducers({
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
+  userDetail: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
 });
 
 const store = createStore(
   rootReducer,
-  // composeEnhancers(
-  //
-  applyMiddleware(thunk)
-  //
-  // )
+  composeEnhancers(
+    //
+    applyMiddleware(thunk)
+    //
+  )
 );
 export default store;

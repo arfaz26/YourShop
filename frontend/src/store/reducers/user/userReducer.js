@@ -8,6 +8,7 @@ const initialState = {
   userInfo: userInfoFromStorage,
   loading: false,
   error: null,
+  success: false,
 };
 
 export const userLoginReducer = (state = initialState, action) => {
@@ -54,6 +55,58 @@ export const userRegisterReducer = (state = initialState, action) => {
         loading: false,
       };
     case actionTypes.USER_REGISTER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const userUpdateProfileReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.USER_UPDATE_PROFILE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        success: false,
+      };
+    case actionTypes.USER_UPDATE_PROFILE_SUCCESS:
+      return {
+        ...state,
+        userInfo: action.payload,
+        loading: false,
+        success: true,
+      };
+    case actionTypes.USER_UPDATE_PROFILE_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const userDetailsReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.USER_DETAILS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case actionTypes.USER_DETAILS_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+      };
+    case actionTypes.USER_DETAILS_FAIL:
       return {
         ...state,
         loading: false,
