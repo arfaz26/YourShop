@@ -54,7 +54,7 @@ const OrderScreen = ({ match }) => {
                   Delivered on {order.deliveredAt}
                 </Message>
               ) : (
-                <Message variant="danger">Delivery Pendinig</Message>
+                <Message variant="danger">Delivery Pending</Message>
               )}
             </ListGroup.Item>
 
