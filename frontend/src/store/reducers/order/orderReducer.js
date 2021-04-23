@@ -62,3 +62,31 @@ export const orderDetailsReducer = (
       return state;
   }
 };
+
+export const orderPayReducer = (state = {}, action) => {
+  switch (action.type) {
+    case actionTypes.ORDER_PAY_REQUEST:
+      return {
+        loading: true,
+        error: null,
+        success: false,
+      };
+
+    case actionTypes.ORDER_PAY_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      };
+
+    case actionTypes.ORDER_PAY_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    case actionTypes.ORDER_PAY_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
