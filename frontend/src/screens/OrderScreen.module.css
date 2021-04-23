@@ -1,0 +1,15 @@
+.OrderId {
+  display: inline-block;
+}
+
+@media (max-width: 500px) {
+  .OrderId {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .OrderId {
+    font-size: 1.1rem;
+  }
+}

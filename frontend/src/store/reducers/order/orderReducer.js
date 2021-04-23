@@ -68,8 +68,8 @@ export const orderPayReducer = (state = {}, action) => {
     case actionTypes.ORDER_PAY_REQUEST:
       return {
         loading: true,
-        error: null,
-        success: false,
+        // error: null,
+        // success: false,
       };
 
     case actionTypes.ORDER_PAY_SUCCESS:
