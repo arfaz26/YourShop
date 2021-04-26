@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "../../constants/userConstants";
+import { ORDER_LIST_MY_RESET } from "../../constants/orderConstants";
 
 export const login = (email, password) => {
   return async (dispatch) => {
@@ -46,6 +47,12 @@ export const logout = () => {
     localStorage.removeItem("userInfo");
     dispatch({
       type: actionTypes.USER_LOGOUT,
+    });
+    dispatch({
+      type: actionTypes.USER_DETAILS_RESET,
+    });
+    dispatch({
+      type: ORDER_LIST_MY_RESET,
     });
   };
 };

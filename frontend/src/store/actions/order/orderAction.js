@@ -111,3 +111,38 @@ export const payOrder = (orderId, paymentResult) => {
     }
   };
 };
+
+export const listMyOrders = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.ORDER_LIST_MY_REQUEST,
+      });
+
+      const {
+        userLogin: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/orders/myorders`, config);
+
+      dispatch({
+        type: actionTypes.ORDER_LIST_MY_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: actionTypes.ORDER_LIST_MY_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+};
