@@ -54,6 +54,9 @@ export const logout = () => {
     dispatch({
       type: ORDER_LIST_MY_RESET,
     });
+    dispatch({
+      type: actionTypes.USER_LIST_RESET,
+    });
   };
 };
 
@@ -172,6 +175,41 @@ export const updateUserProfile = (user) => {
     } catch (error) {
       dispatch({
         type: actionTypes.USER_UPDATE_PROFILE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+};
+
+export const listUsers = () => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: actionTypes.USER_LIST_REQUEST,
+      });
+
+      const {
+        userLogin: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.get(`/api/users`, config);
+
+      dispatch({
+        type: actionTypes.USER_LIST_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: actionTypes.USER_LIST_FAIL,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
