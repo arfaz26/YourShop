@@ -23,6 +23,16 @@ router
     protectedRoutes.protect,
     protectedRoutes.isAdmin,
     userController.deleteUser
+  )
+  .get(
+    protectedRoutes.protect,
+    protectedRoutes.isAdmin,
+    userController.getUserById
+  )
+  .put(
+    protectedRoutes.protect,
+    protectedRoutes.isAdmin,
+    userController.updateUser
   );
 
 module.exports = router;
