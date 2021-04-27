@@ -17,4 +17,12 @@ router
   .get(protectedRoutes.protect, userController.getUserProfile)
   .put(protectedRoutes.protect, userController.updateUserProfile);
 
+router
+  .route("/:id")
+  .delete(
+    protectedRoutes.protect,
+    protectedRoutes.isAdmin,
+    userController.deleteUser
+  );
+
 module.exports = router;
