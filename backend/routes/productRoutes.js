@@ -4,7 +4,14 @@ const protectedRoutes = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.route("/").get(postController.getProducts);
+router
+  .route("/")
+  .get(postController.getProducts)
+  .post(
+    protectedRoutes.protect,
+    protectedRoutes.isAdmin,
+    postController.createProduct
+  );
 
 router
   .route("/:id")
@@ -12,7 +19,12 @@ router
   .delete(
     protectedRoutes.protect,
     protectedRoutes.isAdmin,
-    postController.deleteroductById
+    postController.deleteproductById
+  )
+  .put(
+    protectedRoutes.protect,
+    protectedRoutes.isAdmin,
+    postController.updateProduct
   );
 
 module.exports = router;
