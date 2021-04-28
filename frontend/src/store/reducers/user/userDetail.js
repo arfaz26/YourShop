@@ -1,10 +1,10 @@
-import * as actionTypes from "../../constants/userConstants";
+// import * as actionTypes from "../../constants/userConstants";
 
-const initialState = {
-  loading: false,
-  error: null,
-  user: {},
-};
+// const initialState = {
+//   loading: false,
+//   error: null,
+//   user: {},
+// };
 
 // export const userDetailsReducer = (state = initialState, action) => {
 //   switch (action.type) {
