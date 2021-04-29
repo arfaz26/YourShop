@@ -34,7 +34,7 @@ exports.createProduct = asyncHandler(async (req, res) => {
     name: "Sample name",
     price: 0,
     user: req.user._id,
-    image: "/image/sample.jpg",
+    image: "/images/sample.jpg",
     brand: "sample brand",
     category: "Sample category",
     countInStock: 0,
