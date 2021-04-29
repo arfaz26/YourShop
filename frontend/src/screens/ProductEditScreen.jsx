@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
-import { productDetail } from "../store/actions/product/ListproductAction";
+import {
+  productDetail,
+  updateProduct,
+} from "../store/actions/product/ListproductAction";
+import { PRODUCT_UPDATE_RESET } from "../store/constants/productConstants";
 
 const ProductEditScreen = ({ match, history }) => {
   const productId = match.params.id;
@@ -23,22 +27,44 @@ const ProductEditScreen = ({ match, history }) => {
   const productDetails = useSelector((state) => state.productDetail);
   const { loading, error, product } = productDetails;
 
+  const productUpdate = useSelector((state) => state.productUpdate);
+  const { loading: loadingUpdate, error: errorUpdate, success } = productUpdate;
+
   useEffect(() => {
-    if (!product || product._id !== productId) {
-      dispatch(productDetail(productId));
+    if (success) {
+      dispatch({
+        type: PRODUCT_UPDATE_RESET,
+      });
+      history.push("/admin/productlist");
     } else {
-      setName(product.name);
-      setPrice(product.price);
-      setImage(product.image);
-      setBrand(product.brand);
-      setCategory(product.category);
-      setCountInStock(product.countInStock);
-      setDescription(product.description);
+      if (!product || product._id !== productId) {
+        dispatch(productDetail(productId));
+      } else {
+        setName(product.name);
+        setPrice(product.price);
+        setImage(product.image);
+        setBrand(product.brand);
+        setCategory(product.category);
+        setCountInStock(product.countInStock);
+        setDescription(product.description);
+      }
     }
-  }, [dispatch, product, productId, history]);
+  }, [dispatch, product, productId, history, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateProduct({
+        _id: productId,
+        name,
+        price,
+        image,
+        brand,
+        category,
+        description,
+        countInStock,
+      })
+    );
   };
 
   return (
@@ -46,7 +72,8 @@ const ProductEditScreen = ({ match, history }) => {
       <Link to="/admin/productlist" className="btn btn-light my-3">
         Go Back
       </Link>
-
+      {loadingUpdate && <Loader />}
+      {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
       <FormContainer>
         <h1>Edit Product</h1>
         {loading ? (
