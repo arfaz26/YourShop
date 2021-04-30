@@ -18,4 +18,13 @@ router.route("/:id").get(protectedRoutes.protect, orderController.getOrderById);
 router
   .route("/:id/pay")
   .put(protectedRoutes.protect, orderController.updateOrderToPaid);
+
+router
+  .route("/:id/deliver")
+  .put(
+    protectedRoutes.protect,
+    protectedRoutes.isAdmin,
+    orderController.updateOrderToDelivered
+  );
+
 module.exports = router;
