@@ -1,5 +1,6 @@
-const express = require("express");
 const path = require("path");
+const express = require("express");
+const morgan = require("morgan");
 const dotenv = require("dotenv");
 const color = require("colors");
 const connect = require("./config/db");
@@ -10,6 +11,11 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 const app = express();
+
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
 app.use(express.json());
 dotenv.config();
 

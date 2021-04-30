@@ -14,6 +14,10 @@ router
   );
 
 router
+  .route("/:id/reviews")
+  .post(protectedRoutes.protect, postController.createProductReview);
+
+router
   .route("/:id")
   .get(postController.getProductById)
   .delete(
