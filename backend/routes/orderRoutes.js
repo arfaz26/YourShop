@@ -3,7 +3,14 @@ const router = express.Router();
 const orderController = require("../controllers/orderController");
 const protectedRoutes = require("../middleware/authMiddleware");
 
-router.route("/").post(protectedRoutes.protect, orderController.addOrderItems);
+router
+  .route("/")
+  .post(protectedRoutes.protect, orderController.addOrderItems)
+  .get(
+    protectedRoutes.protect,
+    protectedRoutes.isAdmin,
+    orderController.getOrders
+  );
 router
   .route("/myorders")
   .get(protectedRoutes.protect, orderController.getMyOrders);
