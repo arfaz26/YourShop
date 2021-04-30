@@ -23,6 +23,7 @@ import {
   orderListMyReducer,
   orderPayReducer,
   orderListReducer,
+  orderDeliverReducer,
 } from "./reducers/order/orderReducer";
 // import { userDetailsReducer } from "../store/reducers/user/userDetail";
 
@@ -48,6 +49,7 @@ const rootReducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
+  orderDeliver: orderDeliverReducer,
   orderListMy: orderListMyReducer,
   orderList: orderListReducer,
 });
