@@ -2,7 +2,9 @@ const asyncHandler = require("express-async-handler");
 const Product = require("../models/productModel");
 
 exports.getProducts = asyncHandler(async (req, res) => {
-  const keyword = req.query.keyword
+  const pageSize = 10;
+  const page = req.query.pageNumber || 1;
+  const keyword = +req.query.keyword
     ? {
         name: {
           $regex: req.query.keyword,
@@ -10,8 +12,13 @@ exports.getProducts = asyncHandler(async (req, res) => {
         },
       }
     : {};
-  const products = await Product.find({ ...keyword });
-  res.json(products);
+
+  const count = await Product.countDocuments({ ...keyword });
+
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+  res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 exports.getProductById = asyncHandler(async (req, res) => {
