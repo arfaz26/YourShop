@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 const color = require("colors");
+const cloudinary = require("cloudinary");
 const connect = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -21,6 +22,12 @@ app.use(express.json());
 
 connect();
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 app.get("/", (req, res) => {
   res.send("api is running.......");
 });
@@ -34,7 +41,7 @@ app.get("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
 
-app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
+// app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 app.use(notFound);
 
