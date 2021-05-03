@@ -17,6 +17,8 @@ router
   .route("/:id/reviews")
   .post(protectedRoutes.protect, postController.createProductReview);
 
+router.get("/top", postController.getTopProducts);
+
 router
   .route("/:id")
   .get(postController.getProductById)
