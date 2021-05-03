@@ -4,6 +4,7 @@ import axios from "axios";
 export const listProducts = (keyword = "", pageNumber = "") => {
   return async (dispatch) => {
     try {
+      console.log(keyword);
       dispatch({
         type: actionTypes.PRODUCT_LIST_REQUEST,
       });

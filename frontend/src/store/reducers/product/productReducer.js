@@ -5,7 +5,7 @@ const initialState = {
   error: null,
 };
 
-export const productListReducer = (state = initialState, action) => {
+export const productListReducer = (state = { products: [] }, action) => {
   switch (action.type) {
     case actionTypes.PRODUCT_LIST_REQUEST:
       return {
