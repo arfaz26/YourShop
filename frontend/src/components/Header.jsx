@@ -8,7 +8,6 @@ import { logout } from "../store/actions/user/userAction";
 
 const Header = () => {
   const dispatch = useDispatch();
-
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -26,7 +25,6 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Route render={({ history }) => <SearchBox history={history} />} />
-
             <Nav className="ml-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
